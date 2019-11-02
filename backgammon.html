@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>Stephen's Terrible Time: Backgammon</title>
+    <style>
+        button {
+            display: inline;
+        }
+
+        p {
+            display: inline;
+        }
+    </style>
+
+    <script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+uniform   mat4 modelView;
+uniform   mat4 projection;
+attribute vec4 vColor;
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_Position = projection * modelView * vPosition;
+    fColor = vColor;
+}
+</script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+   
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+    <script type="text/javascript" src="./Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="./Common/initShaders.js"></script>
+    <script type="text/javascript" src="./Common/MV.js"></script>
+    <script type="text/javascript" src="backgammon.js"></script>
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="1080" height="650">
+        Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+    <button id="RollDice">Roll Dice</button>
+    <button id="RedMoveOff">Red: Remove Selected Piece</button>
+    <button id="BlackMoveOff">Black: Remove Selected Piece</button>
+    <p id="DiceResult">Dice Result</p>
+</body>
+
+</html>
